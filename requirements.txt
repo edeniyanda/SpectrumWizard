@@ -1,0 +1,4 @@
+colorthief==0.2.1
+Pillow==9.3.0
+tk==0.1.0
+
