@@ -1,5 +1,6 @@
 from tkinter import * 
 from tkinter import filedialog
+from tkinter import messagebox
 from PIL import ImageTk, Image
 from colorthief import ColorThief
 import os
@@ -21,9 +22,13 @@ root.iconbitmap("images/color-wheel.ico")
 
 def spectrumize():
     # Use ColorThief to extract colors from the image
-    ct = ColorThief(filename)
-    palette = ct.get_palette(color_count=11)
-    
+    try:
+        ct = ColorThief(filename)
+        palette = ct.get_palette(color_count=11)
+    except:
+        messagebox.showerror("Error","Upload an Image to Spectrumize")
+        return
+
     colorls = []
     for i in range(10):
         # Convert RGB values to hexadecimal color codes
@@ -129,10 +134,24 @@ hex9.place(x=60, y=160)
 hex10= Label(colour2, text="#b8255f",fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex10.place(x=60, y=210)
 
-btn_upload = Button(frame4, text="Upload Image", font=("Helvet 10"),bg="cornflowerblue", fg="white", cursor="hand2", activebackground="white", activeforeground="black", width=15, height=2, command=showimage)
+btn_upload = Button(frame4, 
+        text="Upload Image", 
+        font=("Helvet 10"),bg="cornflowerblue",
+        fg="white", cursor="hand2", activebackground="white", 
+        activeforeground="black", width=15, height=2, command=showimage)
 btn_upload.place(x=10, y=300)
 
-btn_spectrumize = Button(frame4, text="Spectrumize", font=("Helvet 10"),bg="#d92938", fg="white", cursor="hand2", activeforeground="black", width=15, height=2, command=spectrumize)
+btn_spectrumize = Button(frame4, 
+        text="Spectrumize", 
+        font=("Helvet 10"),bg="#d92938", 
+        fg="white", 
+        cursor="hand2", 
+        activeforeground="black", 
+        width=15, 
+        height=2,
+        highlightthickness=2,
+        highlightbackground="green", 
+        command=spectrumize)
 btn_spectrumize.place(x=170, y=300)
 
 
