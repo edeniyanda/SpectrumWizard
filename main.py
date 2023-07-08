@@ -40,33 +40,53 @@ def spectrumize():
     for i in range(10):
         # Convert RGB values to hexadecimal color codes
         colorls.append(f"#{palette[i][0]:02x}{palette[i][1]:02x}{palette[i][2]:02x}")
-    
     lstids1 = [id1,id2,id3,id4,id5]
     lstids2 = [id6,id7,id8,id9,id10]
     lsthexes1 = [hex1,hex2,hex3,hex4,hex5]
     lsthexes2 = [hex6,hex7,hex8,hex9,hex10]
     
+        
     # Update the colors in the canvas and labels
     for i in lstids1:
         colour.itemconfig(i, fill=colorls[i])
     for i in lstids2:
         colour2.itemconfig(i, fill=colorls[5+lstids2.index(i)])
     
-    for i in lsthexes1: 
-        i.config(state='normal')
-        i.delete("1.0", END)
-        # Insert the new text
-        i.insert(END, colorls[lsthexes1.index(i)+1])
-        i.config(state='disabled')   
-    
-    for i in lsthexes2:    
-        i.config(state='normal')
-        i.delete("1.0", END)
-        # Insert the new text
-        i.insert(END, colorls[5+lsthexes2.index(i)])
-        i.config(state='disabled')   
-
+    def supply_rgb():
+        for i in lsthexes1:
+            i.config(state='normal')
+            i.delete("1.0", END)
+            # Insert the new text
+            i.insert(END, rgbcolor[lsthexes1.index(i)+1])
+            i.config(state='disabled')   
+            
+        for i in lsthexes2:    
+            i.config(state='normal')
+            i.delete("1.0", END)
+            # Insert the new text
+            i.insert(END, rgbcolor[5+lsthexes2.index(i)])
+            i.config(state='disabled')   
         
+    def supply_hex():   
+        for i in lsthexes1: 
+            i.config(state='normal')
+            i.delete("1.0", END)
+            # Insert the new text
+            i.insert(END, colorls[lsthexes1.index(i)+1])
+            i.config(state='disabled')   
+        
+        for i in lsthexes2:    
+            i.config(state='normal')
+            i.delete("1.0", END)
+            # Insert the new text
+            i.insert(END, colorls[5+lsthexes2.index(i)])
+            i.config(state='disabled')   
+
+    print("Yo")
+    if selection.get() == "Hex Value":
+        return supply_hex()
+    elif selection.get() == "RGB value":
+        return supply_rgb()
 
 def showimage():
     global img_lbl
