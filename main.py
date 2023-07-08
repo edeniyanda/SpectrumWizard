@@ -56,7 +56,7 @@ def spectrumize():
         i.config(state='normal')
         i.delete("1.0", END)
         # Insert the new text
-        i.insert(END, colorls[lsthexes1.index(i)])
+        i.insert(END, colorls[lsthexes1.index(i)+1])
         i.config(state='disabled')   
     
     for i in lsthexes2:    
@@ -128,7 +128,6 @@ def copy_text(event):
 hex1 = Text(colour, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex1.insert(END, "#b8255f")
 hex1.config(state='disabled')
-hex1.config(font=("Arial", 12, "bold"), fg="#000", bg="#EEEED5")
 hex1.place(x=60, y=20)
 
 hex2 = Text(colour, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
@@ -174,32 +173,27 @@ hex6= Label(colour2, text="#b8255f",fg="#000", font=("arial 12 bold"), bg="#EEEE
 hex6 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex6.insert(END, "#b8255f")
 hex6.config(state='disabled')
-hex6.config(font=("Arial", 12, "bold"), fg="#000", bg="#EEEED5")
 hex6.place(x=60, y=20)
 
 hex7 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex7.insert(END, "#b8255f")
 hex7.config(state='disabled')
-hex7.config(font=("Arial", 12, "bold"), fg="#000", bg="#EEEED5")
 hex7.place(x=60, y=65)
 
 hex8 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex8.insert(END, "#b8255f")
 hex8.config(state='disabled')
-hex8.config(font=("Arial", 12, "bold"), fg="#000", bg="#EEEED5")
 hex8.place(x=60, y=110)
 
 
 hex9 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex9.insert(END, "#b8255f")
 hex9.config(state='disabled')
-hex9.config(font=("Arial", 12, "bold"), fg="#000", bg="#EEEED5")
 hex9.place(x=60, y=160)
 
 hex10 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex10.insert(END, "#b8255f")
 hex10.config(state='disabled')
-hex10.config(font=("Arial", 12, "bold"), fg="#000", bg="#EEEED5")
 hex10.place(x=60, y=210)
 
 # Bind the Ctrl+C event to copy the selected text
