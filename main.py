@@ -35,7 +35,6 @@ def spectrumize():
     # print(palette)
     for i in range(10):
         rgbcolor.append(f"{palette[i][0]}, {palette[i][1]}, {palette[i][2]}")
-    print(rgbcolor)
     
     for i in range(10):
         # Convert RGB values to hexadecimal color codes
@@ -82,7 +81,6 @@ def spectrumize():
             i.insert(END, colorls[5+lsthexes2.index(i)])
             i.config(state='disabled')   
 
-    print("Yo")
     if selection.get() == "Hex Value":
         return supply_hex()
     elif selection.get() == "RGB value":

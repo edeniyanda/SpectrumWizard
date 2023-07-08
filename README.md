@@ -36,9 +36,11 @@ SpectrumWizard is an open-source Image Color Detection Software with Python GUI 
 
 4. Click the "Spectrumize" button to analyze the colors in the image.
 
-5. The top 10 most prominent colors and their corresponding hex codes will be displayed in the color palettes on the left and right sides of the application.
+5. The top 10 most prominent colors and their corresponding hex codes will be displayed in the color palettes on the left sides of the application.
 
-6. Repeat the process to analyze colors in different images.
+6. You can click on the drop down combobox to change the format of the colors
+
+7. Repeat the process to analyze colors in different images.
 
 
 ## Acknowledgements
