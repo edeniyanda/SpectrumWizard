@@ -5,20 +5,22 @@ from tkinter import ttk
 from PIL import ImageTk, Image
 from colorthief import ColorThief
 import os
+import resources
 
 
 root = Tk()
 
 
-width=797
-height=500
+WIDTH=797
+HEIGHT=500
 screenwidth = root.winfo_screenwidth()
 screenheight = root.winfo_screenheight()
-alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
+alignstr = '%dx%d+%d+%d' % (WIDTH, HEIGHT, (screenwidth - WIDTH) / 2, (screenheight - HEIGHT) / 2)
 root.geometry(alignstr)
 root.title("SpectrumWizard")
 # root.resizable(0,0)
 root.iconbitmap("images/color-wheel.ico")
+
 
 
 def spectrumize():
@@ -53,13 +55,15 @@ def spectrumize():
     
     def supply_rgb():
         for i in lsthexes1:
+            i.config(font=("10"))
             i.config(state='normal')
             i.delete("1.0", END)
             # Insert the new text
             i.insert(END, rgbcolor[lsthexes1.index(i)+1])
             i.config(state='disabled')   
             
-        for i in lsthexes2:    
+        for i in lsthexes2:
+            i.config(font=("10"))
             i.config(state='normal')
             i.delete("1.0", END)
             # Insert the new text
@@ -91,8 +95,7 @@ def showimage():
     global filename
     # Open a file dialog to select an image file
     filename = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Image File",
-                                          filetypes=(("Image files", "*.jpg;*.jpeg;*.png;*.gif;*.bmp"),
-                                                     ("All files", "*.*")))
+                                          filetypes=(("Image files", "*.jpg;*.jpeg;*.png;*.gif;*.bmp"),("All files", "*.*")))
     
     # Open and display the selected image using PIL
     if filename:
@@ -102,12 +105,24 @@ def showimage():
         img_lbl.image = img  # Update the image reference to avoid garbage collection
         # img_lbl.config(width=img.width(), height=img.height())  # Update width and height of img_lbl
 
+# Change theme function 
+def change_theme(): 
+    frame0.config(bg="black")
+    btn_change_theme.config(text="Light Theme")
+    
+def analyzing():
+    try:
+        resources.plot_analyse(filename, 20)
+    except:
+        messagebox.showerror("Error Message","Upload an Image to Analyse")
+        
 
-
-frame1 = Frame(root, width=797, height=100, bg="#11D78F")
+frame0 = Frame(root, width=WIDTH, height=HEIGHT, bg="white")
+frame0.place(x=0, y=0)
+frame1 = Frame(frame0, width=797, height=100, bg="#11D78F")
 frame1.place(x=0,y=0)
 
-frame2 = Frame(root, width=654, height=380, bg="#575454")
+frame2 = Frame(frame0, width=654, height=380, bg="#575454")
 frame2.place(x=70, y=60)
 
 frame3 = Frame(frame2, width=310, height=353, bg ="#EEEED5")
@@ -118,14 +133,14 @@ frame4.place(x=330, y=10)
 
 logo_image = PhotoImage(file="images/color-wheel.png")
 logo_label = Label(frame3, image=logo_image)
-logo_label.place(x=20, y=20)
+logo_label.place(x=20, y=10)
 
 name_label = Label(frame3, text="SpectrumWizard", font=("Helvet 15 bold"))
-name_label.place(x=90, y=40)
+name_label.place(x=90, y=20)
 
 # Color canvas on the left side
 colour = Canvas(frame3, bg="#EEEED5", width=150, height=265, bd=0)
-colour.place(x=10, y=90)
+colour.place(x=1, y=90)
 
 
 id1 = colour.create_rectangle((10,10,50,50),fill="#b8255f")
@@ -177,7 +192,7 @@ hex5.bind("<Control-c>", copy_text)
 
 # Color canvas on the right side
 colour2 = Canvas(frame3, bg="#EEEED5", width=150, height=265, bd=0)
-colour2.place(x=170, y=90)
+colour2.place(x=150, y=90)
 
 id6 = colour2.create_rectangle((10,10,50,50),fill="#b8255f")
 id7 = colour2.create_rectangle((10,50,50,100),fill="#b8255f")
@@ -191,28 +206,28 @@ hex6= Label(colour2, text="#b8255f",fg="#000", font=("arial 12 bold"), bg="#EEEE
 hex6 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex6.insert(END, "#b8255f")
 hex6.config(state='disabled')
-hex6.place(x=60, y=20)
+hex6.place(x=55, y=20)
 
 hex7 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex7.insert(END, "#b8255f")
 hex7.config(state='disabled')
-hex7.place(x=60, y=65)
+hex7.place(x=55, y=65)
 
 hex8 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex8.insert(END, "#b8255f")
 hex8.config(state='disabled')
-hex8.place(x=60, y=110)
+hex8.place(x=55, y=110)
 
 
 hex9 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex9.insert(END, "#b8255f")
 hex9.config(state='disabled')
-hex9.place(x=60, y=160)
+hex9.place(x=55, y=160)
 
 hex10 = Text(colour2, width=10, height=1, fg="#000", font=("arial 12 bold"), bg="#EEEED5")
 hex10.insert(END, "#b8255f")
 hex10.config(state='disabled')
-hex10.place(x=60, y=210)
+hex10.place(x=55, y=210)
 
 # Bind the Ctrl+C event to copy the selected text
 hex6.bind("<Control-c>", copy_text)
@@ -242,9 +257,35 @@ btn_spectrumize = Button(frame4,
 
 btn_spectrumize.place(x=170, y=300)
 
+
+# Theme mode button
+btn_change_theme = Button(frame1, 
+                          text="Dark Theme",
+                          font=("Arial 8"),
+                          bg = "red",
+                          fg="white",
+                          cursor = "hand2",
+                          width = 10,
+                          height = 1,
+                          command = change_theme
+                         )
+
+btn_change_theme.place(x=700, y = 10)
+
+btn_analyse = Button(frame0,
+                    text="Analyse",
+                    font=("Arial 10"),
+                    bg="green",
+                    fg="white",
+                    width = 10,
+                    height = 1,
+                    cursor = "hand2",
+                    command = analyzing
+                    )
+btn_analyse.place(x = 680, y = 450)
 selection = StringVar()
-cb_option = ttk.Combobox(frame1, value=["Hex Value", "RGB value"], state="r", width=15, textvariable=selection)
-cb_option.place(x=650, y=10)
+cb_option = ttk.Combobox(frame3, value=["Hex Value", "RGB value"], state="r", width=15, textvariable=selection)
+cb_option.place(x=190, y=60)
 cb_option.set("Hex Value")
 
 picture_frame = Frame(frame4, width=290, height=290, bg="black", relief=GROOVE)
