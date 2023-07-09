@@ -105,11 +105,14 @@ def showimage():
         img_lbl.image = img  # Update the image reference to avoid garbage collection
         # img_lbl.config(width=img.width(), height=img.height())  # Update width and height of img_lbl
 
-# Change theme function 
 def change_theme(): 
-    frame0.config(bg="black")
-    btn_change_theme.config(text="Light Theme")
-    
+    if btn_change_theme["text"] == "Dark Theme":
+        frame0.config(bg="black")
+        btn_change_theme.config(text="Light Theme")
+    else:
+        frame0.config(bg="white")
+        btn_change_theme.config(text="Dark Theme")
+
 def analyzing():
     try:
         resources.plot_analyse(filename, 20)
