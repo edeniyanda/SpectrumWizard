@@ -105,13 +105,14 @@ def showimage():
         img_lbl.image = img  # Update the image reference to avoid garbage collection
         # img_lbl.config(width=img.width(), height=img.height())  # Update width and height of img_lbl
 
+# Change theme function 
 def change_theme(): 
     if btn_change_theme["text"] == "Dark Theme":
-        frame0.config(bg="black")
-        btn_change_theme.config(text="Light Theme")
+        frame0.config(bg="black")  # Set background and foreground colors for dark theme
+        btn_change_theme.config(text="Light Theme", bg="white", fg="black")  # Set button text and colors for light theme
     else:
-        frame0.config(bg="white")
-        btn_change_theme.config(text="Dark Theme")
+        frame0.config(bg="white")  # Set background and foreground colors for light theme
+        btn_change_theme.config(text="Dark Theme", bg="black", fg="white")  # Set button text and colors for dark theme
 
 def analyzing():
     try:
@@ -265,7 +266,7 @@ btn_spectrumize.place(x=170, y=300)
 btn_change_theme = Button(frame1, 
                           text="Dark Theme",
                           font=("Arial 8"),
-                          bg = "red",
+                          bg = "black",
                           fg="white",
                           cursor = "hand2",
                           width = 10,
