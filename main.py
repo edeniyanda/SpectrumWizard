@@ -18,7 +18,7 @@ screenheight = root.winfo_screenheight()
 alignstr = '%dx%d+%d+%d' % (WIDTH, HEIGHT, (screenwidth - WIDTH) / 2, (screenheight - HEIGHT) / 2)
 root.geometry(alignstr)
 root.title("SpectrumWizard")
-# root.resizable(0,0)
+root.resizable(0,0)
 root.iconbitmap("images/color-wheel.ico")
 
 
