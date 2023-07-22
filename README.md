@@ -2,7 +2,7 @@
 
 SpectrumWizard is an open-source Image Color Detection Software with Python GUI Tkinter. It allows users to analyze images and detect colors with precision and ease.
 
-![SpectrumWizard Logo](images/color-wheel.png)
+![SpectrumWizard Demo](images/demo.png)
 
 ## Requirements
 
@@ -47,5 +47,6 @@ SpectrumWizard is an open-source Image Color Detection Software with Python GUI 
 
 - Logo used in the app: [Art and design icons created by Tanahcon - Flaticon](https://www.flaticon.com/free-icons/art-and-design)
 
-
+## License
+This project is licensed under the MIT License. See the [LICENSE](license.txt) file for details.
 
